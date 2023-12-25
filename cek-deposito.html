@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+    <link
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style/index.css">
+  <title>Data Cek Deposito</title>
+  <style>
+    /* .modal-content {
+      padding: 20px;
+    } */
+
+    table.dataTable thead th {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body">
+<div class="main-container d-flex">
+  <div class="sidebar" id="side_nav">
+    <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
+      <h1 class="fs-6">
+        <span class="bg-white text-dark rounded shadow px-2 me-2">WB</span>
+        <span class="text-white">WhatsApp Banking</span>
+      </h1>
+      <button class="btn d-md-none d-block close-btn px-1 py-0 text-white">
+        <i class="fal fa-stream"></i>
+      </button>
+    </div>
+
+    <ul class="list-unstyled px-2">
+      <li class="">
+        <a href="/index.html" class="text-decoration-none px-3 py-2 d-block"
+          ><i class="fal fa-home"></i> Overview</a
+        >
+      </li>
+      <li class="">
+        <a
+          href="/nasabah-register.html"
+          class="text-decoration-none px-3 py-2 d-block"
+          ><i class="fal fa-list"></i> Data Nasabah</a
+        >
+      </li>
+      <li class="">
+        <a
+          href="/cek-saldo.html"
+          class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"
+        >
+          <span><i class="fal fa-comment"></i> Cek Saldo</span>
+          <!-- <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
+        </a>
+      </li>
+      <li class="active">
+        <a
+          href="/cek-deposito.html"
+          class="text-decoration-none px-3 py-2 d-block"
+          ><i class="fal fa-envelope-open-text"></i> Cek Deposito</a
+        >
+      </li>
+      <li class="">
+        <a
+          href="/cek-cicilan.html"
+          class="text-decoration-none px-3 py-2 d-block"
+          ><i class="fal fa-users"></i> Cek Cicilan</a
+        >
+      </li>
+    </ul>
+    <hr class="h-color mx-2" />
+
+    <ul class="list-unstyled px-2">
+      <li class="">
+        <a href="#" class="text-decoration-none px-3 py-2 d-block"
+          ><i class="fal fa-bars"></i> Timestamp</a
+        >
+      </li>
+      <li class="">
+        <a href="#" class="text-decoration-none px-3 py-2 d-block"
+          ><i class="fal fa-bell"></i> Notifications</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between d-md-none d-block">
+          <button class="btn px-1 py-0 open-btn me-2">
+            <i class="fal fa-stream"></i>
+          </button>
+          <a class="navbar-brand fs-4" href="#"
+            ><span class="bg-dark rounded px-2 py-0 text-white">WB</span></a
+          >
+        </div>
+        <button
+          class="navbar-toggler p-0 border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fal fa-bars"></i>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <!-- <a class="nav-link active" aria-current="page" href="#"
+                >Notification</a
+              > -->
+
+              <button
+                type="button"
+                class="btn btn-outline-dark btn-sm mt-3 mb-3 rounded-pill"
+                data-bs-toggle="modal"
+                data-bs-target="#notification"
+              >
+                <i class="fal fa-bell"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="notification"
+          tabindex="-1"
+          aria-labelledby="notification"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="notification">Notifikasi</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <!-- Form untuk menambahkan nasabah -->
+                <p>Ada nasabah baru mendaftar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="dashboard-content px-3 pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="mb-2">Data Cek Deposito</h3>
+            <!-- <h4 class="text-center mb-4" id="packageName">Datasheet</h4> -->
+            <!-- <br> -->
+            <!-- <br> -->
+            <!-- <a href="input.html" type="button" class="btn btn-primary mt-3 mb-3">+ Tambah Barang</a> -->
+            <br>
+            <br>
+            <div class="table-responsive">
+              <table id="example" class="table table-striped table-bordered mt-2 mb-2" style="width: 100%"></table>
+            </div>
+            <br />
+            <br />
+            <p id="passingGrade"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.0.0/fetch.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/src/sidebar-toggle.js"></script>
+<script src="/formatRupiah.js"></script>
+  <!-- <script type="text/javascript" src="data.json"></script> -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#example").DataTable({
+        ajax: "https://script.google.com/macros/s/AKfycbzJRJTcii-ltA2748nfwcTbPiTv1HwCMOJvvA3kLfv5TEkWInemkaGTTmOyxazXqMwV9w/exec",
+        columns: [
+          {
+            title: "No Bilyet",
+            data: "No Bilyet",
+          },
+          // {
+          //     title: "Jenis Deposito",
+          //     data: "Jenis Deposito",
+          // },
+          {
+            title: "Nama Nasabah",
+            data: "Nama Nasabah",
+          },
+          {
+            title: "Nilai Deposito",
+            data: "Nilai Deposito",
+            render: function (data) {
+              return formatRupiah(data);
+            },
+          },
+          {
+            title: "Jangka Waktu",
+            data: "Jangka Waktu",
+          },
+          {
+            title: "Bunga",
+            data: "Bunga",
+            render: function (data) {
+              // Mengonversi nilai menjadi persen
+              var persen = parseFloat(data * 100).toFixed(2);
+              return persen + '%';
+            },
+          },
+          {
+            title: "Profit per bln",
+            data: "Profit per bln",
+            render: function (data) {
+              return formatRupiah(data);
+            },
+          },
+          {
+            title: "Profit ke",
+            data: "Profit ke",
+          },
+          {
+            title: "Total Profit",
+            data: "Total Profit",
+            render: function (data) {
+              return formatRupiah(data);
+            },
+          },
+          {
+            title: "Aksi",
+            render: function (data, type, row) {
+              return '<button type="button" class="btn btn-primary btn-sm edit-btn" data-id="' + row.Tanggal + '"><i class="fas fa-edit"></i></button>' +
+                '<button type="button" class="btn btn-danger btn-sm delete-btn" data-id="' + row.Tanggal + '"><i class="fas fa-trash-alt"></i></button>';
+            }
+          },
+        ],
+        rowId: "No Bilyet",
+        liveAjax: true,
+        order: [[0, "desc"]],
+        scrollX: true, // Aktifkan fitur scroll horizontal
+      });
+    });
+
+
+  </script>
+  </body>
+
+</html>
