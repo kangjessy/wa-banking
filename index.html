@@ -5,14 +5,15 @@
     <title>WhatsApp Banking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     />
     <link
       href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js" />
     <link rel="stylesheet" type=“text/css” href="style/index.css">
   </head>
 
@@ -154,38 +155,54 @@
         </nav>
 
         <div class="dashboard-content px-3">
-            <div class="container">
-                <div class="row d-flex gap-2" >
-                    <div class="col-3 shadow rounded-4 py-5 px-4" style="width: 260px;">
-                        <div class="title fs-6 fw-medium">Total Nasabah</div>
-                        <div class="subtitle fs-1 fw-bold" id="totalNasabah">100+</div>
-                    </div>
-                    <div class="col-3 shadow rounded-4 py-5 px-4" style="width: 260px;">
-                        <div class="title fs-6 fw-medium">Cek Saldo</div>
-                        <div class="subtitle fs-1 fw-bold" id="cekSaldo">49</div>
-                    </div>
-                    <div class="col-3 shadow rounded-4 py-5 px-4" style="width: 260px;">
-                        <div class="title fs-6 fw-medium">Cek Deposito</div>
-                        <div class="subtitle fs-1 fw-bold" id="cekDeposito">29</div>
-                    </div>
-                    <div class="col-3 shadow rounded-4 py-5 px-4" style="width: 260px;">
-                        <div class="title fs-6 fw-medium">Cek Cicilan</div>
-                        <div class="subtitle fs-1 fw-bold" id="cekCicilan">42</div>
-                    </div>
-                    
-                </div>
-
-                <div class="row mt-4">
-                    <div class="col-6">
-                        <h4>Grafik Pertumbuhan</h4>
-                        <canvas id="lineChart" width="400" height="200"></canvas>
-                    </div>
-                    <div class="col-6">
-                        <h4>Diagram Perbandingan</h4>
-                        <canvas id="pieChart" width="100" height="100" style="max-width: 250px; max-height: 300px;"></canvas>
-                    </div>
-                </div>
+          <div class="container">
+            <div class="row d-flex gap-2">
+              <div
+                class="col-3 shadow rounded-4 py-5 px-4"
+                style="width: 260px"
+              >
+                <div class="title fs-6 fw-medium">Total Nasabah</div>
+                <div class="subtitle fs-1 fw-bold" id="totalNasabah">100+</div>
+              </div>
+              <div
+                class="col-3 shadow rounded-4 py-5 px-4"
+                style="width: 260px"
+              >
+                <div class="title fs-6 fw-medium">Cek Saldo</div>
+                <div class="subtitle fs-1 fw-bold" id="cekSaldo">49</div>
+              </div>
+              <div
+                class="col-3 shadow rounded-4 py-5 px-4"
+                style="width: 260px"
+              >
+                <div class="title fs-6 fw-medium">Cek Deposito</div>
+                <div class="subtitle fs-1 fw-bold" id="cekDeposito">29</div>
+              </div>
+              <div
+                class="col-3 shadow rounded-4 py-5 px-4"
+                style="width: 260px"
+              >
+                <div class="title fs-6 fw-medium">Cek Cicilan</div>
+                <div class="subtitle fs-1 fw-bold" id="cekCicilan">42</div>
+              </div>
             </div>
+
+            <div class="row mt-4">
+              <div class="col-6">
+                <h4>Grafik Pertumbuhan</h4>
+                <canvas id="lineChart" width="400" height="200"></canvas>
+              </div>
+              <div class="col-6">
+                <h4>Diagram Perbandingan</h4>
+                <canvas
+                  id="pieChart"
+                  width="100"
+                  height="100"
+                  style="max-width: 250px; max-height: 300px"
+                ></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -193,120 +210,125 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/src/sidebar-toggle.js"></script>
     <script>
-  // Function to generate random data for each day of the week (7 days)
-  function generateRandomData() {
-            const data = [];
-            for (let i = 0; i < 7; i++) {
-                data.push(Math.floor(Math.random() * 100) + 1); // Returns a random number between 1 and 100 for each day
-            }
-            return data;
+      // Function to generate random data for each day of the week (7 days)
+      function generateRandomData() {
+        const data = [];
+        for (let i = 0; i < 7; i++) {
+          data.push(Math.floor(Math.random() * 100) + 1); // Returns a random number between 1 and 100 for each day
         }
+        return data;
+      }
 
-        // Dummy data for Cek Saldo, Cek Deposito, and Cek Cicilan (requests per day for 7 days)
-        const cekSaldoValues = generateRandomData();
-        const cekDepositoValues = generateRandomData();
-        const cekCicilanValues = generateRandomData();
+      // Dummy data for Cek Saldo, Cek Deposito, and Cek Cicilan (requests per day for 7 days)
+      const cekSaldoValues = generateRandomData();
+      const cekDepositoValues = generateRandomData();
+      const cekCicilanValues = generateRandomData();
 
-        // Data for the line chart
-        const lineChartData = {
-            labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'], // Days of the week
-            datasets: [
-                {
-                    label: 'Cek Saldo',
-                    data: cekSaldoValues,
-                    borderColor: 'red',
-                    fill: false,
-                    tension: 0.1
-                },
-                {
-                    label: 'Cek Deposito',
-                    data: cekDepositoValues,
-                    borderColor: 'blue',
-                    fill: false,
-                    tension: 0.1
-                },
-                {
-                    label: 'Cek Cicilan',
-                    data: cekCicilanValues,
-                    borderColor: 'green',
-                    fill: false,
-                    tension: 0.1
-                }
-            ]
-        };
+      // Data for the line chart
+      const lineChartData = {
+        labels: [
+          "Senin",
+          "Selasa",
+          "Rabu",
+          "Kamis",
+          "Jumat",
+          "Sabtu",
+          "Minggu",
+        ], // Days of the week
+        datasets: [
+          {
+            label: "Cek Saldo",
+            data: cekSaldoValues,
+            borderColor: "red",
+            fill: false,
+            tension: 0.1,
+          },
+          {
+            label: "Cek Deposito",
+            data: cekDepositoValues,
+            borderColor: "blue",
+            fill: false,
+            tension: 0.1,
+          },
+          {
+            label: "Cek Cicilan",
+            data: cekCicilanValues,
+            borderColor: "green",
+            fill: false,
+            tension: 0.1,
+          },
+        ],
+      };
 
-        // Chart configuration for the line chart
-        const lineChartConfig = {
-            type: 'line',
-            data: lineChartData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        };
+      // Chart configuration for the line chart
+      const lineChartConfig = {
+        type: "line",
+        data: lineChartData,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
 
-        // Creating the line chart
-        const lineCtx = document.getElementById('lineChart').getContext('2d');
-        const myLineChart = new Chart(lineCtx, lineChartConfig);
+      // Creating the line chart
+      const lineCtx = document.getElementById("lineChart").getContext("2d");
+      const myLineChart = new Chart(lineCtx, lineChartConfig);
 
-        // Data for the pie chart
-        const pieChartData = {
-            labels: ['Cek Saldo', 'Cek Deposito', 'Cek Cicilan'],
-            datasets: [{
-                label: 'Requests',
-                data: [49, 29, 42], // Values as per your provided example
-                backgroundColor: [
-                    'red',
-                    'blue',
-                    'green'
-                ],
-                hoverOffset: 4
-            }]
-        };
+      // Data for the pie chart
+      const pieChartData = {
+        labels: ["Cek Saldo", "Cek Deposito", "Cek Cicilan"],
+        datasets: [
+          {
+            label: "Requests",
+            data: [49, 29, 42], // Values as per your provided example
+            backgroundColor: ["red", "blue", "green"],
+            hoverOffset: 4,
+          },
+        ],
+      };
 
-        // Chart configuration for the pie chart
-        const pieChartConfig = {
-            type: 'pie',
-            data: pieChartData,
-            options: {
-                responsive: true
-            }
-        };
+      // Chart configuration for the pie chart
+      const pieChartConfig = {
+        type: "pie",
+        data: pieChartData,
+        options: {
+          responsive: true,
+        },
+      };
 
-        // Creating the pie chart
-        const pieCtx = document.getElementById('pieChart').getContext('2d');
-        const myPieChart = new Chart(pieCtx, pieChartConfig);
-        
-        
-    // $(document).ready(function () {
-    //         $.ajax({
-    //             url: "https://script.google.com/macros/s/AKfycbyxR2tH8iGeo5hd-vLPJO5EjANBTieMJD3cyCAP50PRM0Z5THZB7kQj4Yyg-vNlf59S/exec",
-    //             dataType: "json",
-    //             success: function (data) {
-    //                 if (data && data.length > 0) {
-    //                     document.getElementById('totalNasabah').textContent = data[0]['Total Nasabah'];
-    //                     document.getElementById('cekSaldo').textContent = data[0]['Cek Saldo'];
-    //                     document.getElementById('cekDeposito').textContent = data[0]['Cek Deposito'];
-    //                     document.getElementById('cekCicilan').textContent = data[0]['Cek Cicilan'];
-    //                 } else {
-    //                     document.getElementById('totalNasabah').textContent = 'Data tidak tersedia';
-    //                     document.getElementById('cekSaldo').textContent = 'Data tidak tersedia';
-    //                     document.getElementById('cekDeposito').textContent = 'Data tidak tersedia';
-    //                     document.getElementById('cekCicilan').textContent = 'Data tidak tersedia';
-    //                 }
-    //             },
-    //             error: function (xhr, status, error) {
-    //                 console.error('Error fetching data:', error);
-    //                 document.getElementById('totalNasabah').textContent = 'Gagal memuat data';
-    //                 document.getElementById('cekSaldo').textContent = 'Gagal memuat data';
-    //                 document.getElementById('cekDeposito').textContent = 'Gagal memuat data';
-    //                 document.getElementById('cekCicilan').textContent = 'Gagal memuat data';
-    //             }
-    //         });
-    //     });
+      // Creating the pie chart
+      const pieCtx = document.getElementById("pieChart").getContext("2d");
+      const myPieChart = new Chart(pieCtx, pieChartConfig);
+
+      // $(document).ready(function () {
+      //         $.ajax({
+      //             url: "https://script.google.com/macros/s/AKfycbyxR2tH8iGeo5hd-vLPJO5EjANBTieMJD3cyCAP50PRM0Z5THZB7kQj4Yyg-vNlf59S/exec",
+      //             dataType: "json",
+      //             success: function (data) {
+      //                 if (data && data.length > 0) {
+      //                     document.getElementById('totalNasabah').textContent = data[0]['Total Nasabah'];
+      //                     document.getElementById('cekSaldo').textContent = data[0]['Cek Saldo'];
+      //                     document.getElementById('cekDeposito').textContent = data[0]['Cek Deposito'];
+      //                     document.getElementById('cekCicilan').textContent = data[0]['Cek Cicilan'];
+      //                 } else {
+      //                     document.getElementById('totalNasabah').textContent = 'Data tidak tersedia';
+      //                     document.getElementById('cekSaldo').textContent = 'Data tidak tersedia';
+      //                     document.getElementById('cekDeposito').textContent = 'Data tidak tersedia';
+      //                     document.getElementById('cekCicilan').textContent = 'Data tidak tersedia';
+      //                 }
+      //             },
+      //             error: function (xhr, status, error) {
+      //                 console.error('Error fetching data:', error);
+      //                 document.getElementById('totalNasabah').textContent = 'Gagal memuat data';
+      //                 document.getElementById('cekSaldo').textContent = 'Gagal memuat data';
+      //                 document.getElementById('cekDeposito').textContent = 'Gagal memuat data';
+      //                 document.getElementById('cekCicilan').textContent = 'Gagal memuat data';
+      //             }
+      //         });
+      //     });
     </script>
   </body>
 </html>
